@@ -12,7 +12,9 @@ module Suite
 
     desc "server", "Runs the suite development server"
     def server
-      assert_in_project_directory
+      puts "Run in a valid Suite project directory" and return unless in_project_directory?
+
+      Suite.project_path = destination_root
       require 'suite/server'
       runner = Goliath::Runner.new(ARGV, nil)
       runner.log_stdout = true
@@ -23,8 +25,8 @@ module Suite
 
     private
 
-    def assert_in_project_directory
-      raise "Run in a valid Suite project directory" unless File.exists?(destination_root + "/config/suite.yml")
+    def in_project_directory?
+      File.exists?(destination_root + "/config/suite.yml")
     end
 
   end
