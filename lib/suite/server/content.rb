@@ -1,4 +1,4 @@
 module Suite
-  class Server::Content < Goliath::API
+  class ContentServer < Goliath::API
   end
 end

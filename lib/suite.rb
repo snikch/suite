@@ -1,6 +1,7 @@
+require "suite/core"
 require "suite/version"
 require "suite/cli"
 
 module Suite
-  # Your code goes here...
+  include Suite::Core
 end
