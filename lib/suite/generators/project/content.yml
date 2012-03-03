@@ -1,0 +1,19 @@
+# desktop is the default view, you could add a mobile view etc.
+desktop:
+    # define a default template for use in pages
+    layout: &layout
+        template: "layouts/application"
+    pages:
+        # a root page called index
+        index:
+            # content contains all the parts of the page, in this case one partial
+            content: ["homepage"]
+    
+        # If there's no 'content' block, it will 404 ;)
+        about:
+            # /about/the_team
+            the_team:
+                content: ["about/team"]
+            # /about/the_company
+            the_company:
+                content: ["about/company"]

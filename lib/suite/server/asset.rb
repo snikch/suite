@@ -7,6 +7,7 @@ module Suite
     def response(env)
       file = Suite.project.path + "/assets/" + env.params[:asset].join("/")
       return not_found unless File.exists? file
+      return [200, {}, Suite.project.content.inspect]
 
       [
         200,

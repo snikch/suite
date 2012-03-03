@@ -13,11 +13,8 @@ module Suite
       @@project
     end
 
-    def use_project_at_path path
-      self.project = Suite::Project.new \
-        path,
-        path.split('/').last,
-        YAML.load(path + "/config/suite.yml")
+    def use_project_at_path path, view = :desktop
+      self.project = Suite::Project.new path, view
     end
   end
 end
