@@ -5,9 +5,8 @@ module Suite
   class AssetServer < Goliath::API
     include Suite::ServerError
     def response(env)
-      file = Suite.project_path + "/assets/" + env.params[:asset].join("/")
+      file = Suite.project.path + "/assets/" + env.params[:asset].join("/")
       return not_found unless File.exists? file
-
 
       [
         200,

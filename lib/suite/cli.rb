@@ -14,7 +14,7 @@ module Suite
     def server
       puts "Run in a valid Suite project directory" and return unless in_project_directory?
 
-      Suite.project_path = destination_root
+      Suite.use_project_at_path destination_root
       require 'suite/server'
       runner = Goliath::Runner.new(ARGV, nil)
       runner.log_stdout = true
