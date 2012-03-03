@@ -7,6 +7,7 @@ module Suite
 
       def create_directory_structure
         empty_directory
+        empty_directory "config"
         empty_directory "content"
         empty_directory "assets"
         empty_directory "assets/javascripts"
@@ -16,6 +17,8 @@ module Suite
       def copy_files
         template "application.js.erb", "#{name}/assets/javascripts/application.js"
         template "application.scss.erb", "#{name}/assets/stylesheets/#{name}.css.scss"
+        template "suite.yml", "#{name}/config/suite.yml"
+        template "content.yml", "#{name}/config/content.yml"
       end
 
       private
