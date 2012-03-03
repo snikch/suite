@@ -9,7 +9,7 @@ module Suite
       @config ||= YAML.load(File.open(path + "/config/suite.yml"))
     end
 
-    # Retrieves the content array for the current view
+    # Retrieves the content hash for the current view
     def content
       unless @content
         @content = YAML.load(File.open(path + "/config/content.yml"))
@@ -22,11 +22,15 @@ module Suite
     end
 
     def include? slugs
+      return !!content_at_slugs(slugs)
+    end
+
+    def content_at_slugs slugs
       content_level = pages
       slugs.each do |slug|
         return false unless content_level = content_level[slug.to_s]
       end
-      return !!content_level["content"]
+      return content_level["content"]
     end
   end
 end
