@@ -19,4 +19,5 @@ Gem::Specification.new do |gem|
   gem.add_development_dependency "rspec", "~> 2.6"
   gem.add_dependency "thor"
   gem.add_dependency "goliath"
+  gem.add_dependency "mime-types"
 end
