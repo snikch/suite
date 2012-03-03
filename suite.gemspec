@@ -20,4 +20,5 @@ Gem::Specification.new do |gem|
   gem.add_dependency "thor"
   gem.add_dependency "goliath"
   gem.add_dependency "mime-types"
+  gem.add_dependency "haml"
 end

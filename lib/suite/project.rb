@@ -1,19 +1,17 @@
+require 'suite/renderers'
 module Suite
   class Project
-    attr_accessor :path, :view
-    def initialize path, view
-      @path, @view = path, view
+    attr_accessor :path, :config, :content, :view
+    def initialize path, config, content, view
+      @path, @config, @content, @view = path, config, content, view
     end
 
     def config
-      @config ||= YAML.load(File.open(path + "/config/suite.yml"))
+      @config || {}
     end
 
     # Retrieves the content hash for the current view
     def content
-      unless @content
-        @content = YAML.load(File.open(path + "/config/content.yml"))
-      end
       @content[view.to_s]
     end
 
@@ -31,6 +29,17 @@ module Suite
         return false unless content_level = content_level[slug.to_s]
       end
       return content_level["content"]
+    end
+
+    def file_types
+      config["file_types"] || [:html]
+    end
+
+    # TODO: Puts a renderers config in the yaml to add new renderers
+    def renderers
+      @_memoized_render_types ||= begin
+        Suite::Renderers.default_renderers
+      end
     end
   end
 end

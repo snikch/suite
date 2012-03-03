@@ -1,11 +1,13 @@
 require 'suite/server/error'
+require 'suite/renderers/page'
 
 module Suite
   class ContentServer < Goliath::API
     include Suite::ServerError
     def response env
-      return not_found unless Suite.project.include? slugs
-      [200,{},"blarg"]
+      return not_found unless content = Suite.project.content_at_slugs(slugs)
+      renderer = Suite::Renderers::Page.new content
+      [200,{},renderer.render]
     end
 
     # Returns the array of slugs, or index if no slug
