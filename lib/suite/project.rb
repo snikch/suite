@@ -1,4 +1,5 @@
 require 'suite/renderers'
+require 'sprockets'
 module Suite
   class Project
     attr_accessor :path, :config, :content, :view
@@ -36,6 +37,23 @@ module Suite
 
     def file_types
       config["file_types"] || [:html]
+    end
+
+    def asset path
+      sprocket_environment[path.sub(/javascripts\/|stylesheets\//,'')]
+    end
+
+    def asset_path
+      path + "/assets"
+    end
+    
+    def sprocket_environment
+      @_memorized_sprocket_environment ||= begin
+        environment = Sprockets::Environment.new
+        environment.append_path asset_path + '/javascripts'
+        environment.append_path asset_path + '/stylesheets'
+        environment
+      end
     end
 
     # TODO: Puts a renderers config in the yaml to add new renderers

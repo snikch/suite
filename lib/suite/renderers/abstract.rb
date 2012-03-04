@@ -1,5 +1,8 @@
+require 'suite/helpers/view'
+
 module Suite::Renderers
   class Abstract
+    include Suite::Helpers::View
 
     def self.render_file path, &block
       new(IO.read path).render &block

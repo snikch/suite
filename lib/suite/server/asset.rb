@@ -5,14 +5,12 @@ module Suite
   class AssetServer < Goliath::API
     include Suite::ServerError
     def response(env)
-      file = Suite.project.path + "/assets/" + env.params[:asset].join("/")
-      return not_found unless File.exists? file
-      return [200, {}, Suite.project.content.inspect]
-
+      asset = Suite.project.asset env.params[:asset].join("/")
+      return not_found unless asset
       [
         200,
-        {'content-type'=> MIME::Types.type_for(file).first.content_type },
-        File.read(file)
+        {'content-type'=> MIME::Types.type_for(asset.pathname.to_s).first.content_type },
+        asset.to_s
       ]
     end
   end
