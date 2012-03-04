@@ -1,8 +1,8 @@
 module Suite::Renderers
   class Abstract
 
-    def self.render_file path
-      new(IO.read path).render
+    def self.render_file path, &block
+      new(IO.read path).render &block
     end
 
     def self.render content

@@ -4,9 +4,8 @@ require 'haml'
 module Suite::Renderers
   class HAML < Abstract
 
-    def render
-      Haml::Engine.new(@content).def_method(self, :render_haml)
-      render_haml
+    def render &block
+      Haml::Engine.new(@content).render(self, &block)
     end
 
   end

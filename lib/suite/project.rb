@@ -23,12 +23,15 @@ module Suite
       return !!content_at_slugs(slugs)
     end
 
-    def content_at_slugs slugs
+    def page_at_slugs slugs
       content_level = pages
       slugs.each do |slug|
         return false unless content_level = content_level[slug.to_s]
       end
-      return content_level["content"]
+      return {
+        layout: content_level["layout"] ? content_level["layout"] : content["layout"],
+        content: content_level["content"]
+      }
     end
 
     def file_types
