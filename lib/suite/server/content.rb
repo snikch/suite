@@ -5,8 +5,8 @@ module Suite
   class ContentServer < Goliath::API
     include Suite::ServerError
     def response env
-      return not_found unless content = Suite.project.content_at_slugs(slugs)
-      renderer = Suite::Renderers::Page.new content
+      return not_found unless page = Suite.project.page_at_slugs(slugs)
+      renderer = Suite::Renderers::Page.new page[:layout], page[:content]
       [200,{},renderer.render]
     end
 
