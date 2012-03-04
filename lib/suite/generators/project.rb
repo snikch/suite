@@ -3,10 +3,11 @@ module Suite
   module Generators
     class Project < Thor::Group
       include Thor::Actions
-      argument :name, :type => :string
+      argument :name, type: :string
 
       def create_directory_structure
         empty_directory
+        empty_directory "build"
         empty_directory "config"
         empty_directory "content"
         empty_directory "assets"

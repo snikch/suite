@@ -6,9 +6,19 @@ module Suite
     include Thor::Actions
 
     desc "project NAME", "Generates a project scaffold"
-    def project(name)
+    def project name
       require 'suite/generators/project'
       Suite::Generators::Project.start([name])
+    end
+
+    desc "build TYPE", "Compiles a static version of your project. View type defaults to :desktop"
+    def build view = :desktop
+      say "Build must be run in a suite project directory", :red and return unless in_project_directory?
+      Suite.use_project_at_path destination_root, view
+      Suite.env = Suite::Environment.new :build
+
+      require 'suite/builder'
+      Suite::Builder.start([view])
     end
 
     desc "server", "Runs the suite development server"

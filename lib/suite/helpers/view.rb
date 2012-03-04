@@ -1,3 +1,4 @@
+require 'suite/project/asset_registry'
 
 module Suite
   module Helpers
@@ -10,19 +11,27 @@ module Suite
       end
 
       def javascript_include_tag path
-        Suite.env.development? ? javascript_include_tags_for_asset(path) : raise("Implement javascript_include_tag for build phase")
+        path = path + ".js" unless path =~ /\.js/
+        if Suite.env.development?
+          javascript_include_tags_for_asset(path)
+        else
+          javascript_script_tag "#{Suite.project.asset_path}/javascripts/#{Suite.project.asset_registry.add_asset :js, path}.js"
+        end
       end
 
       def javascript_include_tags_for_asset path
-        path = path + ".js" unless path =~ /\.js/
         assets = Suite.project.asset path
         assets.to_a.map do |asset|
-          "<script type=\"text/javascript\" src=\"#{clean_asset_path asset.pathname.to_s}\"></script>"
+          javascript_script_tag clean_asset_path asset.pathname.to_s
         end.join("\n")
       end
 
       def clean_asset_path path
         path.sub(/\.coffee/,'').sub(Suite.project.path,'')
+      end
+
+      def javascript_script_tag path
+        "<script type=\"text/javascript\" src=\"#{path}\"></script>"
       end
     end
   end

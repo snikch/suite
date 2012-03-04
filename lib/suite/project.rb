@@ -13,7 +13,7 @@ module Suite
 
     # Retrieves the content hash for the current view
     def content
-      @content[view.to_s]
+      @content[view.to_s] || raise("No view '#{view}' defined")
     end
 
     def pages
@@ -43,15 +43,23 @@ module Suite
       sprocket_environment[path.sub(/javascripts\/|stylesheets\//,'')]
     end
 
-    def asset_path
+    def source_asset_path
       path + "/assets"
+    end
+
+    def asset_path
+      config["cdn"] ? config["cdn"] + "/" : "/assets"
+    end
+
+    def asset_registry
+      @_memoized_asset_registry ||= Suite::AssetRegistry.new
     end
 
     def sprocket_environment
       @_memorized_sprocket_environment ||= begin
         environment = Sprockets::Environment.new
-        environment.append_path asset_path + '/javascripts'
-        environment.append_path asset_path + '/stylesheets'
+        environment.append_path source_asset_path + '/javascripts'
+        environment.append_path source_asset_path + '/stylesheets'
         environment
       end
     end

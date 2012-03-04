@@ -1,5 +1,6 @@
 require 'suite/renderers/haml'
 require 'suite/renderers/html'
+require 'suite/renderers/exception'
 
 module Suite::Renderers
   class Page
@@ -52,7 +53,7 @@ module Suite::Renderers
     end
 
     def missing_partial partial
-      "<!-- Could not find partial '#{partial}' -->"
+      Suite::Renderers::Exception.new "Could not find partial <strong>#{partial}</strong>"
     end
   end
 end
