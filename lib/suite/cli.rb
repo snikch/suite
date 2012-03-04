@@ -12,15 +12,20 @@ module Suite
 
     desc "server", "Runs the suite development server"
     def server
-      puts "Run in a valid Suite project directory" and return unless in_project_directory?
+      say "Server must be run in a suite project directory", :red and return unless in_project_directory?
 
       Suite.use_project_at_path destination_root
-      require 'suite/server'
-      runner = Goliath::Runner.new(ARGV, nil)
-      runner.log_stdout = true
-      runner.api = Suite::Server.new
-      runner.app = Goliath::Rack::Builder.build(Suite::Server, runner.api)
-      runner.run
+      begin
+        require 'suite/server'
+        runner = Goliath::Runner.new(ARGV, nil)
+        runner.log_stdout = true
+        runner.api = Suite::Server.new
+        runner.app = Goliath::Rack::Builder.build(Suite::Server, runner.api)
+        runner.run
+      rescue RuntimeError => e
+        say "Could not start development server", :red
+        say "\t#{e.message}", :yellow
+      end
     end
 
     private
