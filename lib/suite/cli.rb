@@ -1,3 +1,4 @@
+require 'suite/environment'
 require 'thor'
 
 module Suite
@@ -17,6 +18,7 @@ module Suite
       Suite.use_project_at_path destination_root
       begin
         require 'suite/server'
+        Suite.env = Suite::Environment.new :development
         runner = Goliath::Runner.new(ARGV, nil)
         runner.log_stdout = true
         runner.api = Suite::Server.new
