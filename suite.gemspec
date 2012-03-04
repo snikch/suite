@@ -22,5 +22,7 @@ Gem::Specification.new do |gem|
   gem.add_dependency "mime-types"
   gem.add_dependency "haml"
   gem.add_dependency "sprockets"
+  gem.add_dependency "sprockets-sass"
   gem.add_dependency "coffee-script"
+  gem.add_dependency "compass"
 end

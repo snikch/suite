@@ -1,5 +1,7 @@
 require 'suite/server/error'
 require 'mime/types'
+require "sprockets-sass"
+require 'compass'
 
 module Suite
   class AssetServer < Goliath::API
@@ -9,8 +11,8 @@ module Suite
       return not_found unless asset
       [
         200,
-        {'content-type'=> MIME::Types.type_for(asset.pathname.to_s).first.content_type },
-        asset.to_s
+        {'content-type'=> MIME::Types.type_for(env.params[:asset].last).first.content_type },
+        asset.body
       ]
     end
   end

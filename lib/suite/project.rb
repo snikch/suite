@@ -46,7 +46,7 @@ module Suite
     def asset_path
       path + "/assets"
     end
-    
+
     def sprocket_environment
       @_memorized_sprocket_environment ||= begin
         environment = Sprockets::Environment.new
