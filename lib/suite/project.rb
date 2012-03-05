@@ -48,7 +48,7 @@ module Suite
     end
 
     def asset_path
-      config["cdn"] ? config["cdn"] + "/" : "/assets"
+      config["asset_host"] ? config["asset_host"] : "/assets"
     end
 
     def asset_registry

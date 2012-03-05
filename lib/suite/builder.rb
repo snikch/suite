@@ -55,7 +55,7 @@ module Suite
     end
 
     def using_cdn?
-      !!Suite.project.config["cdn_host"]
+      !!Suite.project.config["asset_host"]
     end
 
     def empty_directory folder_name = nil

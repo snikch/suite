@@ -14,7 +14,7 @@ module Suite
         @compress_stylesheet = yes? "Compress CSS? [Yn]", :blue
         @using_cdn = yes? "Will you serve assets from a CDN?", :blue
         if @using_cdn
-          @asset_host = ask "CDN Host and path [e.g. http://ak43nam.cloudfront.net/new_site]", :blue
+          @asset_host = ask("CDN Host and path [e.g. http://ak43nam.cloudfront.net/new_site]", :blue).gsub(/\/$/,'')
         end
       end
 
