@@ -1,5 +1,6 @@
-require 'digest/md5'
 require 'thor/group'
+require 'digest/md5'
+require 'yui/compressor'
 require 'suite/renderers/page'
 
 module Suite
@@ -32,7 +33,7 @@ module Suite
             say_status :unchanged, "#{path} as #{asset.build_file_name}", :black
           else
             File.open(out_path, 'w') do |f|
-              f.write Suite.project.asset(path).to_s
+              f.write asset.to_s
             end
             say_status :create, "#{path} as #{asset.build_file_name}", :green
           end

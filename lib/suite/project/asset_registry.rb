@@ -29,11 +29,34 @@ module Suite
     end
 
     def identifier
-      Digest::MD5.hexdigest Suite.project.asset(@path).to_s
+      Digest::MD5.hexdigest to_s
     end
 
     def build_file_name
       "#{identifier}.#{type.downcase}"
+    end
+
+    def to_s
+      @_memoized_to_s ||= compress Suite.project.asset(@path).to_s
+    end
+
+    def compress content
+       case type
+       when :js
+         if Suite.project.config["compression"]["compress_javascript"]
+           YUI::JavaScriptCompressor.new(:munge => Suite.project.config["compression"]["shorten_javascript_variables"]).compress content
+         else
+           content
+         end
+       when :css
+         if Suite.project.config["compression"]["compress_css"]
+           YUI::CssCompressor.new.compress content
+         else
+           content
+         end
+       else
+         raise "Could not find YUI compressor for '#{type}'"
+       end
     end
   end
 end
