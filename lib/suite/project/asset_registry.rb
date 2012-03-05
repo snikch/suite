@@ -31,5 +31,9 @@ module Suite
     def identifier
       Digest::MD5.hexdigest Suite.project.asset(@path).to_s
     end
+
+    def build_file_name
+      "#{identifier}.js"
+    end
   end
 end
