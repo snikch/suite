@@ -48,7 +48,7 @@ module Suite
     end
 
     def asset_path
-      config["asset_host"] ? config["asset_host"] : "/assets"
+      Suite.env.build? && config["asset_host"] ? config["asset_host"] : "/assets"
     end
 
     def asset_registry
