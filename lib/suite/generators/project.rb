@@ -36,9 +36,12 @@ module Suite
       end
 
       def git
-        inside name do
+        if yes? "Create git repo? [Yn]"
           shell.mute do
-            run 'git init' if yes? "Create git repo? [Yn]"
+            inside name do
+              run 'git init'
+            end
+            template "gitignore", "#{name}/.gitignore"
           end
         end
       end
