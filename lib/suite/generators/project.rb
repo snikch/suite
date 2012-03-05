@@ -35,6 +35,14 @@ module Suite
         template "content.yml", "#{name}/config/content.yml"
       end
 
+      def git
+        inside name do
+          shell.mute do
+            run 'git init' if yes? "Create git repo? [Yn]"
+          end
+        end
+      end
+
       private
 
       def self.source_root
