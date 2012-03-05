@@ -1,7 +1,5 @@
 require 'suite/server/error'
 require 'mime/types'
-require "sprockets-sass"
-require 'compass'
 
 module Suite
   class AssetServer < Goliath::API

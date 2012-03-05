@@ -25,15 +25,17 @@ module Suite
     end
 
     def render_assets
-      Suite.project.asset_registry.js.each do |path, asset|
-        out_path = "#{build_directory}/#{asset_directory}/javascripts/#{asset.build_file_name}"
-        if File.exists?(out_path)
-          say_status :unchanged, "#{path} as #{asset.build_file_name}", :black
-        else
-          File.open(out_path, 'w') do |f|
-            f.write Suite.project.asset(path).to_s
+      { js: :javascripts, css: :stylesheets }.each do |type, folder|
+        Suite.project.asset_registry.send(type).each do |path, asset|
+          out_path = "#{build_directory}/#{asset_directory}/#{folder}/#{asset.build_file_name}"
+          if File.exists?(out_path)
+            say_status :unchanged, "#{path} as #{asset.build_file_name}", :black
+          else
+            File.open(out_path, 'w') do |f|
+              f.write Suite.project.asset(path).to_s
+            end
+            say_status :create, "#{path} as #{asset.build_file_name}", :green
           end
-          say_status :create, "#{path} as #{asset.build_file_name}", :green
         end
       end
     end

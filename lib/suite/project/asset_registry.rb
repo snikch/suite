@@ -33,7 +33,7 @@ module Suite
     end
 
     def build_file_name
-      "#{identifier}.js"
+      "#{identifier}.#{type.downcase}"
     end
   end
 end

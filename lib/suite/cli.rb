@@ -1,5 +1,7 @@
 require 'suite/environment'
 require 'thor'
+require "sprockets-sass"
+require 'compass'
 
 module Suite
   class CLI < Thor
