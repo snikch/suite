@@ -10,7 +10,7 @@ module Suite
       end
 
       def to_s
-        "<div style='position:fixed; top:0; width: 100%; font-family: sans-serif; text-align:center; font-size:24px; padding:25px; background-color:#FFF3C2;'>#{message}</div>"
+        "<div style='position:fixed; top:0; left:0; width: 100%; font-family: sans-serif; text-align:center; font-size:24px; padding:25px; background-color:#FFF3C2;'>#{message}</div>"
       end
     end
   end

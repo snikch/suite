@@ -1,8 +1,7 @@
 # desktop is the default view, you could add a mobile view etc.
 desktop:
     # define a default template for use in pages
-    layout: &layout
-        template: "layouts/application"
+    template: "layouts/application"
     pages:
         # a root page called index
         index:
