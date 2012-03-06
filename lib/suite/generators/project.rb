@@ -23,6 +23,7 @@ module Suite
         empty_directory "build"
         empty_directory "config"
         empty_directory "content"
+        empty_directory "content/layouts"
         empty_directory "assets"
         empty_directory "assets/javascripts"
         empty_directory "assets/stylesheets"
@@ -30,9 +31,16 @@ module Suite
 
       def copy_files
         template "application.js.erb", "#{name}/assets/javascripts/application.js"
+        template "core.js.coffee", "#{name}/assets/javascripts/core.js.coffee"
+
         template "application.scss.erb", "#{name}/assets/stylesheets/#{name}.css.scss"
+
         template "suite.yml.erb", "#{name}/config/suite.yml"
         template "content.yml", "#{name}/config/content.yml"
+
+        template "template.html.haml.erb", "#{name}/content/layouts/application.html.haml"
+        template "homepage.html.haml", "#{name}/content/homepage.html.haml"
+        template "info.html.haml", "#{name}/content/info.html.haml"
       end
 
       def git
