@@ -1,0 +1,44 @@
+!!! 5
+-# paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/
+<!--[if lt IE 7]> <html lang="en" class="no-js ie6"> <![endif]-->
+<!--[if IE 7]>    <html lang="en" class="no-js ie7"> <![endif]-->
+<!--[if IE 8]>    <html lang="en" class="no-js ie8"> <![endif]-->
+<!--[if gt IE 8]><!-->
+%html.no-js{ :lang => "en" }
+  <!--<![endif]-->
+  %head
+    %meta{ :charset => "utf-8" }/
+
+    %title My Suite Site
+    %meta{ :name => "description", :content => "" }/
+    %meta{ :name => "author", :content => "" }/
+
+    -# Mobile viewport optimized: j.mp/bplateviewport
+    %meta{ :name => "viewport", :content => "width=device-width, initial-scale=1.0" }/
+
+    -# Place favicon.ico and apple-touch-icon.png in the root directory: mathiasbynens.be/notes/touch-icons
+
+    -# CSS: implied media="all"
+    = stylesheet_link_tag "<%= name %>"
+
+    -# All JavaScript at the bottom, except for Modernizr and Respond.
+    -# Modernizr enables HTML5 elements & feature detects; Respond is a polyfill for min/max-width CSS3 Media Queries
+    //%script{ :src => "js/libs/modernizr-2.0.6.min.js" }
+    = javascript_include_tag "application"
+    %script{ :src => "//ajax.googleapis.com/ajax/libs/jquery/1.6/jquery.js" }
+    :javascript
+      window.jQuery || document.write("<script src='js/jquery.min.js'>\x3C/script>")
+
+  %body
+    = yield
+    = yield :javascript_body
+    :javascript
+      var _gaq=[["_setAccount","UA-xxxxxx-x"],["_trackPageview"],["_trackPageLoadTime"]];
+      (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];g.async=1;
+      g.src=("https:"==location.protocol?"//ssl":"//www")+".google-analytics.com/ga.js";
+      s.parentNode.insertBefore(g,s)}(document,"script"));
+
+    <!--[if lt IE 7 ]>
+    <script src="//ajax.googleapis.com/ajax/libs/chrome-frame/1.0.3/CFInstall.min.js"></script>
+    <script>window.attachEvent('onload',function(){CFInstall.check({mode:'overlay'})})</script>
+    <![endif]-->
