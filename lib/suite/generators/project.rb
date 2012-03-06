@@ -7,14 +7,14 @@ module Suite
       argument :name, type: :string
 
       def create_config
-        say "I’m going to ask you some questions to create your config file"
-        say "You can change these values in your config/suite.yml file"
-        @compress_javascript = yes? "Compress JavaScript? [Yn]", :blue
-        @shorten_javascript_variables = yes? "Shorten JavaScript Variables? [Yn]", :blue
-        @compress_stylesheet = yes? "Compress CSS? [Yn]", :blue
-        @using_cdn = yes? "Will you serve assets from a CDN?", :blue
+        say "I’m going to ask you some questions to create your config file", :cyan
+        say "You can change these values in your config/suite.yml file", :cyan
+        @compress_javascript = yes? "Compress JavaScript? [Yn]"
+        @shorten_javascript_variables = yes? "Shorten JavaScript Variables? [Yn]"
+        @compress_stylesheet = yes? "Compress CSS? [Yn]"
+        @using_cdn = yes? "Will you serve assets from a CDN?"
         if @using_cdn
-          @asset_host = ask("CDN Host and path [e.g. http://ak43nam.cloudfront.net/new_site]", :blue).gsub(/\/$/,'')
+          @asset_host = ask("CDN Host and path [e.g. http://ak43nam.cloudfront.net/new_site]").gsub(/\/$/,'')
         end
       end
 
