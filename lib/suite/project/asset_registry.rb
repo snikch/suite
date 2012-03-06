@@ -43,13 +43,13 @@ module Suite
     def compress content
        case type
        when :js
-         if Suite.project.config["compression"]["compress_javascript"]
-           YUI::JavaScriptCompressor.new(:munge => Suite.project.config["compression"]["shorten_javascript_variables"]).compress content
+         if Suite.project.config["compress_javascript"]
+           YUI::JavaScriptCompressor.new(:munge => Suite.project.config["shorten_javascript_variables"]).compress content
          else
            content
          end
        when :css
-         if Suite.project.config["compression"]["compress_css"]
+         if Suite.project.config["compress_css"]
            YUI::CssCompressor.new.compress content
          else
            content

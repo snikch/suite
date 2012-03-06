@@ -1,7 +1,6 @@
-compression:
-    compress_javascript: <%= @compress_javascript %>
-    compress_css: <%= @compress_stylesheet %>
-    shorten_javascript_variables: <%= @shorten_javascript_variables %>
+compress_javascript: <%= @compress_javascript %>
+compress_css: <%= @compress_stylesheet %>
+shorten_javascript_variables: <%= @shorten_javascript_variables %>
 <% if @using_cdn %>
 asset_host: <%= @asset_host %>
 <% end %>
