@@ -42,6 +42,8 @@ module Suite
         template "template.html.haml.erb", "#{name}/content/layouts/application.html.haml"
         template "homepage.html.haml", "#{name}/content/homepage.html.haml"
         template "info.html.haml", "#{name}/content/info.html.haml"
+
+        template "htaccess", "#{name}/assets/.htaccess"
       end
 
       def git

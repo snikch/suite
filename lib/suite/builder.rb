@@ -12,6 +12,7 @@ module Suite
       create_directory_structure
       render_content
       render_assets
+      render_incidentals
     rescue => e
       say_status :error, e.message, :red
       say_status :cancelling, "Deleting built files and folders", :yellow
@@ -40,6 +41,10 @@ module Suite
         end
       end
       directory "assets/images", build_directory + "/" + asset_directory + "/images"
+    end
+
+    def render_incidentals
+      copy_file "assets/.htaccess", build_directory + "/.htaccess"
     end
 
     def create_directory_structure
