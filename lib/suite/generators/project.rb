@@ -25,6 +25,7 @@ module Suite
         empty_directory "content"
         empty_directory "content/layouts"
         empty_directory "assets"
+        empty_directory "assets/images"
         empty_directory "assets/javascripts"
         empty_directory "assets/stylesheets"
       end

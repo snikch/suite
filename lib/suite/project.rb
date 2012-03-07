@@ -40,7 +40,7 @@ module Suite
     end
 
     def asset path
-      sprocket_environment[path.sub(/javascripts\/|stylesheets\//,'')]
+      sprocket_environment[path.sub(/javascripts\/|stylesheets\/|images\//,'')]
     end
 
     def source_asset_path
@@ -58,6 +58,7 @@ module Suite
     def sprocket_environment
       @_memorized_sprocket_environment ||= begin
         environment = Sprockets::Environment.new
+        environment.append_path source_asset_path + '/images'
         environment.append_path source_asset_path + '/javascripts'
         environment.append_path source_asset_path + '/stylesheets'
         environment
