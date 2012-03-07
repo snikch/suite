@@ -178,11 +178,11 @@ The content.yml file can be used to define several views for your site. You migh
 
 Here’s the default content.yml file you’ll get when you create a new project:
 
-`desktop:
-    layout: "layouts/application"
-    pages:
-        index:
-            content: ["homepage", "info"]`
+	desktop:
+    	layout: "layouts/application"
+    	pages:
+        	index:
+            	content: ["homepage", "info"]`
 
 The root element is the name of the view, in this case 'desktop'. Inside that we have two elements, a layout element that defines the location of the layout that pages are wrapped in and a pages element that defines the pages the site will have.
 
@@ -198,21 +198,22 @@ The default site only has one page, the index page. Inside a page element you ha
 
 You can also have a custom layout declared on any page, for those ‘irregular’ pages.
 
-`		payment:
-			layout: "layouts/payment"
-			content: ["payment/form", "payment/sidebar"]`
+			payment:
+				layout: "layouts/payment"
+				content: ["payment/form", "payment/sidebar"]
 
 #### Nested Pages
 
 You’re not limited to a flat directory structure. You can also nest pages.
 
-`	pages:
-		about:
-			content: ["about/navigation", "about/intro"] #optional content
-			the_team:
-				content: ["about/navigation", "about/team"]
-			the_company:
-				content: ["about/navigation", "about/company"]				`
+		pages:
+			about:
+				content: ["about/navigation", "about/intro"] #optional content
+				the_team:
+					content: ["about/navigation", "about/team"]
+				the_company:
+					content: ["about/navigation", "about/company"]
+				
 
 In this case, we end up with three valid urls: `about/`, `about/the_team/`, and `about/the_company/`. If we didn’t have a content element in the root of the 'about' element, it would still be valid - we just wouldn’t get the `about/` page.
 
@@ -222,20 +223,20 @@ __Note: If you change your content.yml file, you will need to restart the develo
 
 To create multiple views of your site, simply add a new root element to `content.yml`. Here’s an example with two versions, the desktop version and a mobile version, which you would build with `suite build mobile`.
 
-`desktop:
-    layout: "layouts/desktop"
-    pages:
-        index:
-            content: ["homepage", "info"]
-        contact:
-        	content: ["contact-us"]
-mobile:
-    layout: "layouts/mobile"
-    pages:
-        index:
-            content: ["homepage", "find-us", "add-to-homescreen"]
-        contact:
-        	content: ["link-to-maps"]`
+	desktop:
+	    layout: "layouts/desktop"
+	    pages:
+	        index:
+	            content: ["homepage", "info"]
+	        contact:
+	        	content: ["contact-us"]
+	mobile:
+	    layout: "layouts/mobile"
+	    pages:
+	        index:
+	            content: ["homepage", "find-us", "add-to-homescreen"]
+	        contact:
+	        	content: ["link-to-maps"]
 
 
 ### <a name="section_4.6"></a> 4.6 Settings (suite.yml)
