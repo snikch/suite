@@ -3,9 +3,9 @@ require File.expand_path('../lib/suite/version', __FILE__)
 
 Gem::Specification.new do |gem|
   gem.authors       = ["Mal Curtis"]
-  gem.email         = ["mal@sitepoint.com"]
-  gem.description   = %q{TODO: Write a gem description}
-  gem.summary       = %q{TODO: Write a gem summary}
+  gem.email         = ["mal@mal.co.nz"]
+  gem.description   = %q{All the stuff that make front end web development fun, in one simple toolkit}
+  gem.summary       = gem.description
   gem.homepage      = ""
 
   gem.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
