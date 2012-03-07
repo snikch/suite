@@ -39,11 +39,12 @@ module Suite
           end
         end
       end
+      directory "assets/images", build_directory + "/" + asset_directory + "/images"
     end
 
     def create_directory_structure
       Suite.project.content
-      empty_directory
+      empty_directory build_directory
       if using_cdn?
         empty_site_directory
         empty_cdn_directory
@@ -58,16 +59,12 @@ module Suite
       !!Suite.project.config["asset_host"]
     end
 
-    def empty_directory folder_name = nil
-      super "#{build_directory}/#{folder_name}"
-    end
-
     def build_directory
       "build/#{type}"
     end
 
     def empty_site_directory folder_name = nil
-      empty_directory "#{site_directory}/#{folder_name}"
+      empty_directory "#{build_directory}/#{site_directory}/#{folder_name}"
     end
 
     def site_directory
@@ -75,7 +72,7 @@ module Suite
     end
 
     def empty_cdn_directory folder_name = nil
-      empty_directory("#{cdn_directory}/#{folder_name}")
+      empty_directory("#{build_directory}/#{cdn_directory}/#{folder_name}")
     end
 
     def cdn_directory
@@ -83,11 +80,11 @@ module Suite
     end
 
     def empty_asset_directory folder_name = nil
-      empty_directory "#{asset_directory}/#{folder_name}"
+      empty_directory "#{build_directory}/#{asset_directory}/#{folder_name}"
     end
 
     def asset_directory
-      using_cdn? ? cdn_directory : site_directory + "/assets"
+      using_cdn? ? cdn_directory : (site_directory ? site_directory + "/" : "") + "assets"
     end
 
     def render_content_array array, folder = nil
@@ -132,6 +129,10 @@ module Suite
 
     def content_hash content
       Digest::MD5.hexdigest content
+    end
+
+    def self.source_root
+      Suite.project.path
     end
   end
 end
