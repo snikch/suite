@@ -1,6 +1,8 @@
 require 'goliath/api'
 require 'goliath/runner'
 require 'suite/server/error'
+require 'suite/renderers/page'
+require 'mime/types'
 
 module Suite
   class Server < Goliath::API
@@ -15,24 +17,6 @@ module Suite
     end
 
     def respond_with_asset path
-      if path =~ /^\/assets\/images/
-        output = respond_with_static_asset path
-      else
-        output = respond_with_dynamic_asset path
-      end
-    end
-
-    def respond_with_static_asset path
-      path = Suite.project.path + path
-      return not_found unless File.exists? path
-      [
-        200,
-        {'content-type'=> MIME::Types.type_for(path).first.content_type },
-        IO.read(path)
-      ]
-    end
-
-    def respond_with_dynamic_asset path
       asset = Suite.project.asset path.gsub(/^\/assets\//,'')
       return not_found unless asset
       [
