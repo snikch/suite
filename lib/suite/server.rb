@@ -19,9 +19,11 @@ module Suite
     def respond_with_asset path
       asset = Suite.project.asset path.gsub(/^\/assets\//,'')
       return not_found unless asset
+      content_types = MIME::Types.type_for(path)
+      headers = {'content-type'=> content_types.first.content_type } unless content_types.size == 0
       [
         200,
-        {'content-type'=> MIME::Types.type_for(path).first.content_type },
+        headers || {},
         asset.body
       ]
     end
