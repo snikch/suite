@@ -274,6 +274,18 @@ I’m still new at Ruby so I may have done things in a round-about fashion. If y
 
 ### <a name="section_6.1"></a> 6.1 Development
 
+__0.1.3__ (March 11, 2012)
+
+* Handle root dir icon assets, e.g.favicon, apple-touch-icon(.*)
+
+__0.1.2__ (March 9, 2012)
+
+* Performance of dev server increased 3x
+
+__0.1.1__ (March 7, 2012)
+
+* Cleaned up default template cruft
+
 __0.1.0__ (March 7, 2012)
 
 * Initial public release.
