@@ -36,6 +36,7 @@ All the stuff that make front end web development fun, in one simple toolkit.
       * [4.4 Images](#section_4.4)
       * [4.5 Pages (content.yml)](#section_4.5)
       * [4.6 Settings (suite.yml)](#section_4.6)
+      * [4.7 Icons](#section_4.7)	  
    * [5 About](#section_5)
    * [6 Development](#section_6)
       * [6.1 Version History](#section_6.1)
