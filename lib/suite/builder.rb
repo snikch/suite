@@ -40,6 +40,7 @@ module Suite
         end
       end
       directory "assets/images", build_directory + "/" + asset_directory + "/images"
+      directory "assets/icons", build_directory
     end
 
     def create_directory_structure

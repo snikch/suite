@@ -263,6 +263,10 @@ If you’ve used the `stylesheet_link_tag` and `javascript_include_tag` view hel
 
 `http://s3.amazonaws.com/my-bucket-name/javascripts/c1aba2692680cbc9e958451badaa989a.js`
 
+### <a name="section_4.7"></a> 4.7 Icons
+
+Icons are served up from the `/assets/icons/` directory, but during build are placed in the root directory. Place your favicon.ico, apple-touch-icon (and variants) and any other icons that you want to end up in your root build directory here. Requests that match favicon|apple-touch-icon will serve assets from the icons directory.
+
 ## <a name="section_5"></a> 5 About
 
 From the very beginning, this toolkit has been designed from the ground up to scratch my own itch while developing a non dynamic site. I wanted SASS and CoffeeScript so I had them running watching for changes in two windows. I wanted HAML for my content, so I hacked together a build script and created my own way of organising partials. Eventually running sass, coffeescript and a build script became enough of a hindrance that I started to think bigger, and Suite was born.
