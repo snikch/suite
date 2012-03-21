@@ -49,16 +49,21 @@ module Suite
     private
 
     def headers
-      content_types = MIME::Types.type_for(env["REQUEST_PATH"])
-      headers = {'content-type'=> content_types.first.content_type } unless content_types.size == 0
-      # Add caching headers for images
-      headers.merge!(
-        "Pragma" => "private",
-        "Cache-Control" => "public, max-age: 3600",
-        "Expires" => CGI.rfc1123_date(Time.now + (5*60))
-      ) if env["REQUEST_PATH"] =~ /(jpg|jpeg|png|gif)$/
+      headers = {}
+      begin
+        content_types = MIME::Types.type_for(env["REQUEST_PATH"])
+        headers.merge!('content-type'=> content_types.first.content_type ) unless content_types.size == 0
+        # Add caching headers for images
+        headers.merge!(
+          "Pragma" => "private",
+          "Cache-Control" => "public, max-age: 3600",
+          "Expires" => CGI.rfc1123_date(Time.now + (5*60))
+        ) if env["REQUEST_PATH"] =~ /(jpg|jpeg|png|gif)$/
 
-      headers
+        headers
+      rescue
+        headers
+      end
     end
 
     def slugs
