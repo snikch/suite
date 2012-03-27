@@ -1,3 +1,4 @@
+![Suite](https://github.com/snikch/suite/raw/master/logo.png)
 # Static Website Development Toys: suite
 
 All the stuff that make front end web development fun, in one simple toolkit.
