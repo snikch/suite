@@ -36,7 +36,7 @@ All the stuff that make front end web development fun, in one simple toolkit.
       * [4.4 Images](#section_4.4)
       * [4.5 Pages (content.yml)](#section_4.5)
       * [4.6 Settings (suite.yml)](#section_4.6)
-      * [4.7 Icons](#section_4.7)	  
+      * [4.7 Icons](#section_4.7)
    * [5 About](#section_5)
    * [6 Development](#section_6)
       * [6.1 Version History](#section_6.1)
@@ -95,7 +95,7 @@ The command takes an optional view name, and will default to the desktop view. F
 
 __Build the default 'desktop' view__
 
-`suite build` 
+`suite build`
 
 __Build the 'mobile' view__
 
@@ -214,7 +214,7 @@ You’re not limited to a flat directory structure. You can also nest pages.
 					content: ["about/navigation", "about/team"]
 				the_company:
 					content: ["about/navigation", "about/company"]
-				
+
 
 In this case, we end up with three valid urls: `about/`, `about/the_team/`, and `about/the_company/`. If we didn’t have a content element in the root of the 'about' element, it would still be valid - we just wouldn’t get the `about/` page.
 
@@ -278,6 +278,10 @@ At this point, I haven’t finished my original project so there are plenty of n
 I’m still new at Ruby so I may have done things in a round-about fashion. If you want to add something in, or clean something up, feel free to do so and make a pull request, or file a [new issue](https://github.com/snikch/suite/issues).
 
 ### <a name="section_6.1"></a> 6.1 Development
+
+__0.1.6__ (March 16, 2012)
+
+* Added cache control for development server, kinda important
 
 __0.1.3__ (March 11, 2012)
 
