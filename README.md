@@ -84,6 +84,8 @@ If you’re not in the root folder of a Suite project an exception will be raise
 
 In the background, this is a Goliath server which handles requests for both content and assets - compiling them on the fly. You should not need to restart your server when changing content, javascript or stylesheets - but you _will_ need to restart it if you change your `config/suite.yml` or `config/content.yml` files.
 
+__ProTip:__ All argument are passed directly to the Goliath runner, so you can use any [argument that Goliath accepts](https://github.com/postrank-labs/goliath/blob/master/lib/goliath/runner.rb), such as `-p 8080` for a port or `-a 12.34.56.78` for an ip address.
+
 ### <a name="section_3.3"></a> 3.3 suite build
 Building a site does a few things.
 
