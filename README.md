@@ -147,7 +147,7 @@ To load `assets/stylesheets/styles.css.scss` you’d call `stylesheet_link_tag "
 
 #### Sprockets
 
-Internally, Suite uses [sprockets](https://https://github.com/sstephenson/sprockets/) to handle the rendering of CSS and JavaScript assets. This give you a few key features.
+Internally, Suite uses [sprockets](https://github.com/sstephenson/sprockets/) to handle the rendering of CSS and JavaScript assets. This give you a few key features.
 
 _Firstly,_ you can use coffeescript or sass without any headaches. If you want a new coffeescript file that renders to javascript, just create `assets/javascripts/my_script.js.coffee` and if you want a new sass file `assets/stylesheets/my_styles.css.scss`.
 
