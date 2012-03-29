@@ -40,7 +40,7 @@ module Suite
         end
       end
       directory "assets/images", build_directory + "/" + asset_directory + "/images"
-      directory "assets/icons", build_directory
+      directory "assets/icons", build_directory if Dir.exists? "assets/icons"
     end
 
     def create_directory_structure
