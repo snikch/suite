@@ -70,7 +70,7 @@ module Suite
       if self.env["REQUEST_PATH"] == "/"
         ["index"]
       else
-        self.env["REQUEST_PATH"].split("/")
+        self.env["REQUEST_PATH"].split("/").delete_if{|v| v.to_s == ""}
       end
     end
 
