@@ -24,10 +24,10 @@ module Suite
     end
 
     desc "server", "Runs the suite development server"
-    def server
+    def server view = :desktop
       say "Server must be run in a suite project directory", :red and return unless in_project_directory?
 
-      Suite.use_project_at_path destination_root
+      Suite.use_project_at_path destination_root, view
       begin
         require 'suite/server'
         Suite.env = Suite::Environment.new :development
