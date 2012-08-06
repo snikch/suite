@@ -24,6 +24,8 @@ module Suite
     end
 
     desc "server", "Runs the suite development server"
+    method_option :host, :type => :string, :default => "0.0.0.0",
+    :aliases => "-a", :desc => "Host address"
     def server view = :desktop
       say "Server must be run in a suite project directory", :red and return unless in_project_directory?
 
